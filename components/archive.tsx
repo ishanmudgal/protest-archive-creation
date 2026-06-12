@@ -11,14 +11,6 @@ import {
 } from "@/lib/archive-data"
 import { RadioModule } from "@/components/radio-module"
 
-function Stamp({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-block -rotate-3 border-2 border-destructive px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-destructive">
-      {children}
-    </span>
-  )
-}
-
 function SectionHeader({
   code,
   title,
@@ -123,9 +115,6 @@ export function Archive() {
               Creative protest methods // worldwide. Compiled by the collective.
               Read, copy, redistribute.
             </p>
-            <div className="mt-3">
-              <Stamp>Classified — Eyes Only</Stamp>
-            </div>
           </div>
 
           <nav className="mt-4 border border-border bg-card" aria-label="Archive sections">

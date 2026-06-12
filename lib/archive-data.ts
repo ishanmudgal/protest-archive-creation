@@ -307,3 +307,40 @@ export const tools: ToolItem[] = [
       "Offline maps and pre-planned exits. Never rely on a single channel that can be switched off.",
   },
 ]
+
+// ── RADIO STATIONS ───────────────────────────────────────────────
+// The player streams these in order. Drop in the stream URL(s) from
+// your radio project. `src` must be a direct audio stream/file URL
+// (e.g. an Icecast/Shoutcast .mp3/.aac endpoint or an .mp3 file).
+// Add, remove, or reorder freely.
+export type Station = {
+  id: string
+  name: string
+  frequency: string
+  description: string
+  src: string
+}
+
+export const stations: Station[] = [
+  {
+    id: "main",
+    name: "Free Radio — Main Channel",
+    frequency: "101.4",
+    description: "The signal from the previous project. Replace src with your live stream URL.",
+    src: "", // <- paste your stream URL here
+  },
+  {
+    id: "archive",
+    name: "Archive Loop",
+    frequency: "97.2",
+    description: "A looping playlist of recorded transmissions and field recordings.",
+    src: "",
+  },
+  {
+    id: "emergency",
+    name: "Emergency Broadcast",
+    frequency: "88.0",
+    description: "Reserved low-band channel for coordinated actions and alerts.",
+    src: "",
+  },
+]
