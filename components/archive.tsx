@@ -60,6 +60,12 @@ A FEW PRINCIPLES FOR SAFE SHARING
   - Remember that in some places, this knowledge is dangerous to
     hold. Share with care and consent.
 
+
+TO ADD TO THE ARCHIVE
+----------------------------------------
+  - Pull the public GitHub repository, add new folders or edit entries.
+  - Clearly write the additions or changes in the push message.
+
 ----------------------------------------
 Read it. Copy it. Pass it on.
 Solidarity is the only secure protocol.
