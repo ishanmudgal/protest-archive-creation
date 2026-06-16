@@ -11,6 +11,60 @@ import {
 } from "@/lib/archive-data"
 import { RadioModule } from "@/components/radio-module"
 
+const MANIFESTO = `THE UNDERGROUND ARCHIVE
+========================================
+INSTRUCTIONS FOR SHARING & REDISTRIBUTION
+========================================
+
+WHAT THIS IS
+------------
+A digital archive of creative protest methods used around the
+world. Art as protest, creative interventions, alternative uses
+of technology, documentation, transmission, and tools. It was
+built to be read, copied, and passed on.
+
+THE ETHOS
+---------
+Information wants to be free. Knowledge of how people resist,
+organize, and speak should belong to everyone — not locked behind
+paywalls, borders, or permission. This archive exists because the
+right to free expression is meaningless without the right to
+share what we know.
+
+We believe in:
+  - The open and free sharing of information.
+  - The right to free speech and free assembly.
+  - Knowledge as a commons, not a commodity.
+  - Solidarity over secrecy of ideas.
+
+YOU ARE ENCOURAGED TO
+---------------------
+  1. COPY this archive freely. Mirror it, fork it, print it.
+  2. REDISTRIBUTE it in any form — digital, paper, spoken.
+  3. TRANSLATE it into other languages.
+  4. EXPAND it. Every entry is a seed. Add your own.
+  5. TEACH from it. Share it with anyone who needs it.
+
+NO PERMISSION REQUIRED
+----------------------
+You do not need to ask. You do not need to credit. You do not
+need to pay. If it helps someone resist injustice or speak more
+freely, it has done its job.
+
+A FEW PRINCIPLES FOR SAFE SHARING
+---------------------------------
+  - Protect people, not just information. Strip identifying
+    details when a source could be put at risk.
+  - Verify before you amplify. Misinformation harms movements.
+  - Share tools AND the knowledge to use them safely.
+  - Remember that in some places, this knowledge is dangerous to
+    hold. Share with care and consent.
+
+----------------------------------------
+Read it. Copy it. Pass it on.
+Solidarity is the only secure protocol.
+----------------------------------------`
+
 function SectionHeader({
   code,
   title,
@@ -77,6 +131,18 @@ export function Archive() {
     sectionsRef.current[id] = el
   }
 
+  const downloadInstructions = () => {
+    const blob = new Blob([MANIFESTO], { type: "text/plain;charset=utf-8" })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = "underground-archive-instructions.txt"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }
+
   if (!bootDone) {
     return (
       <div className="crt-screen flex min-h-screen flex-col justify-center px-6 font-mono text-sm text-primary text-glow">
@@ -141,8 +207,17 @@ export function Archive() {
             ))}
           </nav>
 
+          <button
+            onClick={downloadInstructions}
+            className="mt-4 flex w-full items-center gap-2 border border-primary bg-card px-3 py-2.5 text-left text-xs uppercase tracking-wide text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+          >
+            <span aria-hidden>▼</span>
+            <span className="flex-1 leading-tight">Download instructions</span>
+            <span className="text-[10px] opacity-70">.txt</span>
+          </button>
+
           <p className="mt-3 px-1 text-[10px] leading-relaxed text-muted-foreground">
-            {">"} all entries are seeds. expand the record.
+            {">"} sharing & redistribution protocol. read it. pass it on.
           </p>
         </aside>
 
