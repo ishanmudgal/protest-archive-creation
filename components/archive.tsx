@@ -49,22 +49,27 @@ export function Archive() {
   }, [])
 
   // Track which section is in view to highlight the sidebar.
+  // Wait for bootDone so the section refs exist before observing them.
   useEffect(() => {
+    if (!bootDone) return
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id)
-        })
+        // Pick the entry closest to the top of the viewport that is visible.
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+        if (visible[0]) setActive(visible[0].target.id)
       },
-      { rootMargin: "-30% 0px -60% 0px" },
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
     )
     Object.values(sectionsRef.current).forEach((el) => {
       if (el) observer.observe(el)
     })
     return () => observer.disconnect()
-  }, [])
+  }, [bootDone])
 
   const scrollTo = (id: string) => {
+    setActive(id)
     sectionsRef.current[id]?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
 
